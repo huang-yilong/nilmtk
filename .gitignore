@@ -24,3 +24,5 @@ data/ukdale
 *.tar
 *.dat
 
+tutorial/
+docs/
