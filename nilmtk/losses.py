@@ -1,4 +1,5 @@
-from sklearn.metrics import mean_squared_error, mean_absolute_error, f1_score, r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error, f1_score, r2_score, recall_score, precision_score, \
+    matthews_corrcoef
 import numpy as np
 
 def mae(app_gt,app_pred):
@@ -41,3 +42,41 @@ def nep(app_gt,app_pred):
     denominator = np.sum(app_gt)
 
     return numerator/denominator
+
+# added from other files
+def recall(app_gt, app_pred):
+    threshold = 10
+    gt_temp = np.array(app_gt)
+    gt_temp = np.where(gt_temp<threshold,0,1)
+    pred_temp = np.array(app_pred)
+    pred_temp = np.where(pred_temp<threshold,0,1)
+
+    return recall_score(gt_temp, pred_temp)
+
+def precision(app_gt, app_pred):
+    threshold = 10
+    gt_temp = np.array(app_gt)
+    gt_temp = np.where(gt_temp<threshold,0,1)
+    pred_temp = np.array(app_pred)
+    pred_temp = np.where(pred_temp<threshold,0,1)
+
+    return precision_score(gt_temp, pred_temp)
+
+def omae(app_gt, app_pred):
+    threshold = 10
+    gt_temp = np.array(app_gt)
+    idx = gt_temp > threshold
+    gt_temp = gt_temp[idx]
+    pred_temp = np.array(app_pred)
+    pred_temp = pred_temp[idx]
+
+    return mae(gt_temp, pred_temp)
+
+def MCC(app_gt, app_pred):
+    threshold = 10
+    gt_temp = np.array(app_gt)
+    gt_temp = np.where(gt_temp<threshold,0,1)
+    pred_temp = np.array(app_pred)
+    pred_temp = np.where(pred_temp<threshold,0,1)
+
+    return matthews_corrcoef(gt_temp, pred_temp)
