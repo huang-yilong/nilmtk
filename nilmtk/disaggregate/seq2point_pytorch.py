@@ -135,7 +135,6 @@ def train(appliance_name, model, mains, appliance, epochs, batch_size, pretrain 
                 cnt += 1
         
         final_loss = loss_sum / cnt
-        final_loss = loss_sum / cnt
         # Save best only
         if best_loss is None or final_loss < best_loss:
             best_loss = final_loss
