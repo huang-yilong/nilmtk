@@ -80,3 +80,15 @@ def MCC(app_gt, app_pred):
     pred_temp = np.where(pred_temp<threshold,0,1)
 
     return matthews_corrcoef(gt_temp, pred_temp)
+
+def sae(app_gt, app_pred):
+    '''
+    compute the signal aggregate error
+    sae = |\hat(r)-r|/r where r is the ground truth total energy;
+    \hat(r) is the predicted total energy.
+    '''
+    sample_second = 6.0 # sample time is 6 seconds
+    r = np.sum(app_gt * sample_second * 1.0 / 3600.0)
+    rhat = np.sum(app_pred * sample_second * 1.0 / 3600.0)
+
+    return np.abs(r - rhat) / np.abs(r)
