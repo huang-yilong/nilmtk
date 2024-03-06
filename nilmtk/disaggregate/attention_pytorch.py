@@ -39,7 +39,6 @@ DEVICE = 'cuda' if USE_CUDA else 'cpu'
 
 class Encoder(nn.Module):
     def __init__(self, power_dis_dim, embed_dim = 128, enc_hid_dim = 128, dec_hid_dim = 256):
-        # Refer to "王轲,钟海旺,余南鹏等.基于seq2seq和Attention机制的居民用户非侵入式负荷分解[J].中国电机工程学报,2019,39(01):75-83+322.DOI:10.13334/j.0258-8013.pcsee.181123."
         super(Encoder, self).__init__()
 
         self.embedding = nn.Embedding(power_dis_dim, embed_dim)

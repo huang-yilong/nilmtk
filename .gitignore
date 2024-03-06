@@ -19,6 +19,7 @@ notebooks/*.h5
 
 # Ignoring Local datasets: 
 data/REDD
+data/REFIT
 data/ukdale
 *.h5
 *.tar
